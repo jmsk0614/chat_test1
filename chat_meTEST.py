@@ -1,23 +1,15 @@
 import streamlit as st
-import os
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import ChatMessage
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import load_prompt
 
+# API 키 직접 입력
+openai_api_key = "sk-6V_ZEMOwbX7pNFGoGB8p8PDM9zSuYFVXAZs1xJaiFwT3BlbkFJuZRvIE3urp6r98nR9aPD6oPVT1eypCoxzzZ03aQWQA "  # 여기에 실제 OpenAI API 키를 입력하세요.
 
-from dotenv import (
-    load_dotenv,
-)  # python-dotenv 패키지를 사용하여 .env 파일에 저장된 환경 변수를 로드
-
-# 환경변수 로드
-load_dotenv()  # .env 파일을 로드하여 환경 변수 설정
-openai_api_key = os.getenv("OPENAI_API_KEY")  # .env에 저장된 OPENAI_API_KEY를 가져옴
-
-
-st.set_page_config(page_title="나만의 ChatGPT 💬", page_icon="💬")
-st.title("나만의 ChatGPT 💬")
+st.set_page_config(page_title="명석의 ChatGPT 💬", page_icon="💬")
+st.title("명석의 ChatGPT 💬")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
@@ -34,7 +26,11 @@ def add_history(role, content):
 
 # 체인을 생성합니다.
 def create_chain(prompt, model):
-    chain = prompt | ChatOpenAI(model_name=model) | StrOutputParser()
+    chain = (
+        prompt
+        | ChatOpenAI(model_name=model, openai_api_key=openai_api_key)
+        | StrOutputParser()
+    )
     return chain
 
 
