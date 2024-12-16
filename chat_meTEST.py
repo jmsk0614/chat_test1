@@ -11,8 +11,11 @@ from langchain_core.prompts import load_prompt
 # 방법 1: 직접 secrets에서 가져오기
 ChatOpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
+
+
 # 방법 2: 환경변수로 설정하기
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+client = ChatOpenAI()
 
 
 st.set_page_config(page_title="나만의 ChatGPT 💬", page_icon="💬")
