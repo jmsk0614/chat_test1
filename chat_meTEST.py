@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import load_prompt
 
 # 방법 1: 직접 secrets에서 가져오기
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+ChatOpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
 # 방법 2: 환경변수로 설정하기
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
