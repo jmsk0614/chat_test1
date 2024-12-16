@@ -1,22 +1,14 @@
 import streamlit as st
 import os
-import toml
-import openai
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import ChatMessage
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import load_prompt
 
-# 방법 1: 직접 secrets에서 가져오기
-ChatOpenAI.api_key = st.secrets["OPENAI_API_KEY"]
-
-
-
-# 방법 2: 환경변수로 설정하기
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-client = ChatOpenAI()
-
+# API 키를 Streamlit secrets에서 가져오기
+st.session_state["api_key"] = st.secrets["OPENAI_API_KEY"]
+client = ChatOpenAI(api_key=st.session_state["api_key"])
 
 st.set_page_config(page_title="나만의 ChatGPT 💬", page_icon="💬")
 st.title("나만의 ChatGPT 💬")
