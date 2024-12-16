@@ -7,6 +7,15 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import load_prompt
 
+from dotenv import (
+    load_dotenv,
+)  # python-dotenv 패키지를 사용하여 .env 파일에 저장된 환경 변수를 로드
+
+# 환경변수 로드
+load_dotenv()  # .env 파일을 로드하여 환경 변수 설정
+openai_api_key = os.getenv("OPENAI_API_KEY")  # .env에 저장된 OPENAI_API_KEY를 가져옴
+
+
 
 # secrets.toml에서 API 키 읽기
 
